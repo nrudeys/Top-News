@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3600000">
+    <title>News App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="header_div_cont">
+        <div id="header_div">
+            <a id="headerlink" href="home.html">
+                <h1><img src='globe.png' alt="Globe icon">
+                    TOP NEWS
+                </h1>
+            </a>
+        </div>
+        <form>
+            <!-- SEARCH BAR -->
+            <div id="search_bar_div">
+                <i id="searchicon" class="fas fa-search"></i>
+                <input id="search_bar" type="text" onkeyup="search()" placeholder="Search New York Times articles...">
+            </div>
+        </form>
+        <nav id="nav_menu">
+            <a href="about.html" target="_self">ABOUT</a>
+            <a href="home.html" target="_self">HOME</a>
+        </nav>
+
+    </div><br>
+
+    <!-- DISPLAY FILTER BAR BUTTON -->
+    <div id="show_filter_button">
+        <button id="display_filter_button" onClick="showFilterDiv()" type="submit">
+            Hide Filters
+        </button>
+    </div><br>
+
+    <div id="filter_bar_cont">
+        <!-- SECTIONS -->
+        <div id="sections">
+            <p><b>SECTIONS</b></p>
+            <input type="checkbox" id="check" value="checkAll" onClick="checkAll('check', 'sel_sections')">
+            <label for="check"> Check All</label><br>
+
+            <input type="checkbox" id="world_cb" class="sel_sections" value="world"
+                onClick="checkAllSelected('check', 'sel_sections')">
+            <label for="world_cb"> World</label><br>
+
+            <input type="checkbox" id="us_cb" class="sel_sections" value="us"
+                onClick="checkAllSelected('check', 'sel_sections')">
+            <label for="us_cb"> U.S.</label><br>
+
+            <input type="checkbox" id="health_cb" class="sel_sections" value="health"
+                onClick="checkAllSelected('check', 'sel_sections')">
+            <label for="health_cb"> Health</label><br>
+
+            <input type="checkbox" id="tech_cb" class="sel_sections" value="technology"
+                onClick="checkAllSelected('check', 'sel_sections')">
+            <label for="tech_cb"> Technology</label><br>
+        </div>
+
+        <!-- SUBSECTIONS -->
+        <div id="subsections">
+            <p><b>SUB-SECTIONS</b></p>
+            <input type="checkbox" id="sub_check" value="checkAll" onClick="checkAll('sub_check', 'sel_subsections')">
+            <label for="sub_check"> Check All</label><br>
+
+            <input type="checkbox" class="sel_subsections" value="africa"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Africa</label>
+
+            <input type="checkbox" class="sel_subsections" value="americas"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Americas</label>
+
+            <input type="checkbox" class="sel_subsections" value="asia"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Asia</label>
+
+            <input type="checkbox" class="sel_subsections" value="australia"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Australia</label>
+
+            <input type="checkbox" class="sel_subsections" value="canada"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Canada</label>
+
+            <input type="checkbox" class="sel_subsections" value="europe"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Europe</label>
+
+            <input type="checkbox" class="sel_subsections" value="middleeast"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> MiddleEast</label>
+            <br>
+            <input type="checkbox" class="sel_subsections" value="business"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Business</label>
+
+            <input type="checkbox" class="sel_subsections" value="politics"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Politics</label>
+
+            <input type="checkbox" class="sel_subsections" value="policy"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Health Policies</label>
+
+            <input type="checkbox" class="sel_subsections" value="live"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Live</label>
+
+            <input type="checkbox" class="sel_subsections" value="mind"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Mind</label>
+
+            <input type="checkbox" class="sel_subsections" value="family"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Family</label><br>
+
+            <input type="checkbox" class="sel_subsections" value="dealbook"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Dealbook</label>
+
+            <input type="checkbox" class="sel_subsections" value="economy"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Economy</label>
+
+            <input type="checkbox" class="sel_subsections" value="energy-environment"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Energy & Environment</label>
+
+            <input type="checkbox" class="sel_subsections" value="media"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Media</label>
+
+            <input type="checkbox" class="sel_subsections" value="tech"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Tech</label><br>
+
+            <input type="checkbox" class="sel_subsections" value="smallbusiness"
+                onClick="checkAllSelected('sub_check', 'sel_subsections')">
+            <label> Entrepreneurship</label>
+        </div>
+
+        <!-- DATES -->
+        <div id="date">
+            <p><b>START DATE</b></p>
+            <input type="date" id="startdate">
+            <p><b>END DATE</b></p>
+            <input type="date" id="enddate">
+        </div>
+
+        <!-- FILTER/RESET BUTTONS -->
+        <div id="filter_button_div">
+            <button type="submit" class="filter_button" onClick="getFilteredArticles()">
+                Filter<i class="fas fa-filter"></i>
+            </button><br><br>
+            <button type="submit" class="filter_button" onClick="reset()">
+                Reset
+                <i class="fas fa-broom"></i>
+            </button>
+        </div>
+
+        <!-- INFO TOOLTIP -->
+        <i id="info" class="fas fa-question-circle"></i>
+        <span id="tooltiptext">
+            Articles are filtered by all
+            selected sections/subsections
+            within the given
+            time range
+        </span>
+    </div>
+
+    <!-- ARTICLES -->
+    <div id="articles_cont"></div>
+
+</body>
+
+</html>
