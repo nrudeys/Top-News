@@ -63,6 +63,7 @@ async function fetchData() {
 async function appendDataToHTML(data_arr, node, i) {
     var res = "";
     var minDate = new Date();
+    var tmp = i;
 
     // Only appending articles that fit into specified sections/subsections
     data_arr.forEach(article => {
@@ -98,6 +99,7 @@ async function appendDataToHTML(data_arr, node, i) {
                 author = `${article.byline.substring(0, 2)}: 
                 ${article.byline.substring(3)}`;
             }
+
             // Create article element and append to result string
             res += `<div id='article${i}' class='articles'><h3><a id=
             'title${i}' class='title' href=${article.url}>${article.title}</a>
@@ -112,7 +114,7 @@ async function appendDataToHTML(data_arr, node, i) {
     // Update document
     node.innerHTML += res;
 
-    i = 0;
+    i = tmp;
 
     // Add images to each article container
     data_arr.forEach(article => {
