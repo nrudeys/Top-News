@@ -20,17 +20,6 @@ h1 > img {
 }
 
 
-/* About page description */
-#aboutdescr {
-  float: left;
-  font-size: larger;
-  line-height: 2;
-  margin-left: 4vw;
-  padding: 1.5vw;
-  width: 35%;
-}
-
-
 /* Container for about description */
 #aboutdiv {
   border: solid black;
@@ -38,6 +27,7 @@ h1 > img {
   margin-left: 4.5vw;
   margin-right: 4.5vw;
 }
+
 
 #aboutheader {text-align: center;}
 
@@ -66,6 +56,18 @@ h1 > img {
 
 
 #date > p {padding-left: 7%;}
+
+
+#descrdiv {
+  display: inline-block;
+  font-size: larger;
+  height: 25vw;
+  line-height: 2;
+  margin-left: 4vw; 
+  overflow: auto;
+  padding: 2vw;
+  width: 35%;
+}
 
 
 /* Container for filters */
@@ -169,8 +171,8 @@ h1 > img {
   margin-left: 3%;
   margin-right: 7%;
   margin-top: 1%;
-  padding-bottom: 1%;
   overflow: auto;
+  padding-bottom: 1%;
 }
 
 
@@ -275,12 +277,15 @@ h1 > img {
 
 
 /* Scrollbar for article conts and filter bar */
+#descrdiv::-webkit-scrollbar,
 #filter_bar_cont::-webkit-scrollbar,
 .articles::-webkit-scrollbar {
   height: 0.65vw;
   width: 0.65vw;
 }
 
+
+#descrdiv::-webkit-scrollbar-thumb,
 #filter_bar_cont::-webkit-scrollbar-thumb,
 .articles::-webkit-scrollbar-thumb {border-radius: 1.6vw;}
 
@@ -291,6 +296,7 @@ h1 > img {
 }
 
 
+#descrdiv::-webkit-scrollbar-track-piece,
 #filter_bar_cont::-webkit-scrollbar-track-piece,
 .articles::-webkit-scrollbar-track-piece {
   border-radius: 1.6vw;
