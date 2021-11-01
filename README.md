@@ -40,4 +40,4 @@ Example:
 ![filter](https://user-images.githubusercontent.com/84989936/139742913-c6b74b92-82a3-4614-abee-63a87dfa3ccf.gif)
 
 ## Acknowledgements
-* ![regular expressions 101](https://regex101.com/)
+* [regular expressions 101](https://regex101.com/)
