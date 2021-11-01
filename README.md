@@ -12,7 +12,7 @@
 This website displays the New York Times' top stories in the World, U.S., Health, and Technology and, the goal is to use filters to narrow articles that are of interest to a user in a fast and efficient manner. Filters help accomplish this goal by allowing users to narrow down articles through sections, subsections, and time range. Furthermore, users can filter articles by using specific keywords such as article title, authors' name, and non-stop words from the abstract. 
 
 ## Getting Started
-### Technologies and Libraries
+### Technologies
 * HTML5
 * Javascript 1.7
 * CSS
@@ -25,5 +25,8 @@ Go to terminal and paste: git clone https://github.com/nrudeys/Top-News.git and 
 Live Site: https://nrudeys.github.io/Top-News/
 
 ## Usage
+<p align="center">
+    <img src="filter.gif">
+</p>
 
 ## Acknowledgements
