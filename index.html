@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <script src="script.js"></script>
+    <script src="removeStopWords.js"></script>
+
 </head>
 
 <body>
@@ -26,9 +28,12 @@
             <!-- SEARCH BAR -->
             <div id="search_bar_div">
                 <i id="searchicon" class="fas fa-search"></i>
-                <input id="search_bar" type="text" onkeyup="search()" placeholder="Search New York Times articles...">
+                <input id="search_bar" type="text" pattern="[a-zA-Z0-9\s+]*"
+                    title="Should contain only letters or numbers. No special characters e.g. ,*^&" onkeyup="search()"
+                    placeholder="Search New York Times articles...">
             </div>
         </form>
+        <!-- PAGE LINKS -->
         <nav id="nav_menu">
             <a href="about.html" target="_self">ABOUT</a>
             <a href="index.html" target="_self">HOME</a>
@@ -43,6 +48,7 @@
         </button>
     </div><br>
 
+    <!-- FILTER BAR -->
     <div id="filter_bar_cont">
         <!-- SECTIONS -->
         <div id="sections">
@@ -160,7 +166,7 @@
 
         <!-- FILTER/RESET BUTTONS -->
         <div id="filter_button_div">
-            <button type="submit" class="filter_button" onClick="getFilteredArticles()">
+            <button type="submit" class="filter_button" onClick="showFilteredArticles()">
                 Filter<i class="fas fa-filter"></i>
             </button><br><br>
             <button type="submit" class="filter_button" onClick="reset()">
@@ -181,7 +187,6 @@
 
     <!-- ARTICLES -->
     <div id="articles_cont"></div>
-
 </body>
 
 </html>
