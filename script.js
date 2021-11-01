@@ -14,7 +14,7 @@ api-key=${KEY}`;
 // Sections/subsections of interest
 const allPossibleSections = ["world", "us", "health", "tech"];
 const allPossibleSubsections = [
-    "africa", "americas", "asia", "austrialia", "canada", "europe",
+    "africa", "americas", "asia", "australia", "canada", "europe",
     "middleeast", "politics", "business", "policy", "live", "mind",
     "family", "dealbook", "economy", "energy-environment", "media",
     "tech", "smallbusiness"
@@ -26,8 +26,9 @@ var subsections = [];
 var createdDates = [];
 
 
-/********************* FETCH DATA ********************/
-// Fetching data from urls
+/**
+ * Fetch data from URLs
+ */
 async function fetchData() {
     await Promise.all([
         fetch(worldURL),
@@ -40,10 +41,8 @@ async function fetchData() {
             return response.json();
         }));
     }).then(function (data) {
-        var articlesNode = document.getElementById("articles_cont");
-
         data.forEach(arr => {
-            appendDataToHTML(arr.results, articlesNode,
+            appendDataToHTML(arr.results,
                 document.getElementsByClassName("articles").length);
         });
 
@@ -52,15 +51,19 @@ async function fetchData() {
         sessionStorage.setItem("subsections", subsections.join(","));
         sessionStorage.setItem("createddates", createdDates.join(","));
     }).catch(function (error) {
-        alert(`Error occurred, please try to re-open or refresh again in a 
-        few seconds`);
+        alert(`Error occurred, please try to re-open page`);
         console.log("ERR-" + error);
     });
 }
 
 
-// Populate arrays and append to HTML document
-async function appendDataToHTML(data_arr, node, i) {
+/**
+ * Populates tracking arrays and appends to HTML document
+ * @param {object} data_arr - object of data results
+ * @param {number} i - number of articles appended to HTML document
+ */
+function appendDataToHTML(data_arr, i) {
+    var articlesNode = document.getElementById("articles_cont");
     var res = "";
     var minDate = new Date();
     var tmp = i;
@@ -112,7 +115,7 @@ async function appendDataToHTML(data_arr, node, i) {
     });
 
     // Update document
-    node.innerHTML += res;
+    articlesNode.innerHTML += res;
 
     i = tmp;
 
@@ -138,21 +141,25 @@ async function appendDataToHTML(data_arr, node, i) {
 }
 
 
-// Setting new min date
+/**
+ * Comparing two date and setting a min date
+ * @param {date} minDate - new date to compare
+ * @param {date} date - current min date
+ */
 function formatMinDate(minDate, date) {
     if (minDate < date) {
-
         var formattedMinDate = getFormattedDate(minDate);
 
-        document.getElementById("startdate").min = formattedMinDate;
-        document.getElementById("enddate").min = formattedMinDate;
-        document.getElementById("startdate").value = formattedMinDate;
+        document.getElementById("startdate").min =
+            document.getElementById("enddate").min =
+            document.getElementById("startdate").value = formattedMinDate;
     }
 }
 
 
-/********************* FILTER-BAR FUNCTIONS ********************/
-// Displaying/hiding filter bar
+/**
+ * Displaying/hiding filter bar
+ */
 function showFilterDiv() {
     var filterBar = document.getElementById("filter_bar_cont");
     var button = document.getElementById("display_filter_button");
@@ -167,7 +174,11 @@ function showFilterDiv() {
 }
 
 
-// Uncheck/check all boxes 
+/**
+ * Uncheck/check all boxes
+ * @param {string} source - name of id for check all box
+ * @param {string} boxes - name of class name for all check all results
+ */
 function checkAll(source, boxes) {
     var checked = document.getElementById(source).checked;
     var all_checkboxes = document.getElementsByClassName(boxes);
@@ -178,7 +189,11 @@ function checkAll(source, boxes) {
 }
 
 
-// Checking if check all option selected
+/**
+ * Checking if check all option selected
+ * @param {string} source - name of id for check all box
+ * @param {string} boxes - name of class name for all check all results
+ */
 function checkAllSelected(source, boxes) {
     var checkBoxAll = document.getElementById(source);
 
@@ -204,11 +219,16 @@ function checkAllSelected(source, boxes) {
 }
 
 
-// Returning all chosen filters (e.g., section, subsection, dates)
+/**
+ * Returning all chosen filters (e.g., section, subsection, dates)
+ * @returns {array} Array of chosen filters
+ */
 function getChosenFilters() {
     if (new Date(document.getElementById("startdate").value) >
         new Date(document.getElementById("enddate").value)) {
-        throw "Start date more than end date";
+        alert("Start date more than end date");
+        reset();
+        return [];
     } else {
         var selected = [];
         var inputs = document.querySelectorAll(
@@ -228,9 +248,14 @@ function getChosenFilters() {
 }
 
 
-// Displaying articles that match the chosen filter options
-function getFilteredArticles() {
-    var len = document.getElementsByClassName("articles").length;
+/**
+ * Returns array of articles that have been filtered
+ * @param {number} len - number of article elements
+ * @param {array} filteredOpts - array of chosen filters
+ * @returns array of filtered articles
+ */
+function getFilteredArticles(len, filteredOpts) {
+    var filteredArticles = [];
     var startDate = new Date(document.getElementById("startdate").value);
     var endDate = new Date(document.getElementById("enddate").value);
 
@@ -238,6 +263,27 @@ function getFilteredArticles() {
     startDate = new Date(startDate.setDate(startDate.getDate() + 1));
     endDate = new Date(endDate.setDate(endDate.getDate() + 1));
 
+    for (var i = 0; i < len; i++) {
+        var date = new Date(createdDates[i].split('T')[0]);
+        date = new Date(date.setDate(date.getDate() + 1));
+
+        if (((filteredOpts.includes(sections[i]) ||
+            filteredOpts.includes(subsections[i])) &&
+            (date >= startDate && date <= endDate)) ||
+            (filteredOpts.length == 2 &&
+                (date >= startDate && date <= endDate))) {
+            filteredArticles.push(i);
+        }
+    }
+    return filteredArticles;
+}
+
+
+/**
+ * Displaying articles that match the chosen filter options 
+ */
+function showFilteredArticles() {
+    var len = document.getElementsByClassName("articles").length;
     var filteredOpts = [];
 
     try {
@@ -247,15 +293,10 @@ function getFilteredArticles() {
     }
 
     if (filteredOpts.length != 0) {
-        // Filtering articles
-        for (var i = 0; i < len; i++) {
-            var date = new Date(createdDates[i].split('T')[0]);
-            date = new Date(date.setDate(date.getDate() + 1));
+        var filteredArticles = getFilteredArticles(len, filteredOpts);
 
-            if ((filteredOpts.includes(sections[i] || subsections[i]) &&
-                (date >= startDate && date <= endDate)) ||
-                (filteredOpts.length == 2 &&
-                    (date >= startDate && date <= endDate))) {
+        for (var i = 0; i < len; i++) {
+            if (filteredArticles.includes(i)) {
                 document.getElementById(`article${i}`).style.display = "block";
             } else {
                 document.getElementById(`article${i}`).style.display = "none";
@@ -266,7 +307,10 @@ function getFilteredArticles() {
     }
 }
 
-// Displaying all articles and unselecting filter options
+
+/**
+ * Displaying all articles and unselecting filter options
+ */
 function reset() {
     var startDate = document.getElementById("startdate");
     var endDate = document.getElementById("enddate");
@@ -286,70 +330,99 @@ function reset() {
         document.getElementById("sub_check").checked = false;
     }
 
-    for (var i = 0; i < allSelCheckboxes.length; i++) {
-        if (allSelCheckboxes[i].checked) {
-            allSelCheckboxes[i].checked = false;
-        }
-    }
+    Array.from(allSelCheckboxes).forEach(elem => elem.checked = false);
+    Array.from(allSelSubCheckboxes).forEach(elem => elem.checked = false);
+    Array.from(articles).forEach(elem => elem.style.display = "block");
 
-    for (i = 0; i < allSelSubCheckboxes.length; i++) {
-        if (allSelSubCheckboxes[i].checked) {
-            allSelSubCheckboxes[i].checked = false;
-        }
-    }
-
-    for (i = 0; i < articles.length; i++) {
-        if (articles[i].style.display == "none") {
-            articles[i].style.display = "block";
-        }
-    }
+    document.getElementById("search_bar").value = "";
 }
 
 
-/********************* SEARCH BAR FUNCTIONS ********************/
-// Checking if a string is include within another string
-function valIncludesStr(str, val) {
-    if (val.toLowerCase().includes(str.toLowerCase())) {
+/**
+ * Checking if a string is include within another string
+ * @param {string} haystack - string value
+ * @param {string} needle - substring to search
+ * @returns {boolean} - true if value is found otherwise false
+ */
+function valIncludesStr(needle, haystack) {
+    if (haystack.includes(needle)) {
         return true;
     }
+
     return false;
 }
 
 
-// Checking if search bar value matches within author name(s)
+/**
+ * Checking if string matches within author name(s)
+ * @param {string} str - substring, search bar value
+ * @param {array} authors - name of author(s)
+ * @returns {boolean} - true if author matches str substring 
+ */
 function authorMatch(str, authors) {
     for (var i = 0; i < authors.length; i++) {
-        if (valIncludesStr(str, authors[i])) {
-            // Match found
+        if (str.split(" ").some(element => authors[i].includes(element))) {
             return true;
         }
     }
+
     return false;
 }
 
 
-// Filtering articles based on value in search bar
-function search() {
-    var str = document.getElementById("search_bar").value;
-    var titles = document.getElementsByClassName("title");
-    var authors = document.getElementsByClassName("authors");
-    var articles = document.getElementsByClassName("articles");
+/**
+ * 
+ * @param {string} str - search bar value
+ * @param {string} val - abstract or title
+ * @returns {boolean} true if str is found in val, false otherwise
+ */
+function strMatch(str, val) {
+    return removeStopWords(str).some(element => val.includes(element));
+}
 
-    for (var i = 0; i < articles.length; i++) {
-        // Checking if value is in authors name or title of article
-        if (authorMatch(str, (authors[i].innerHTML.substring(3)
-            .split(/,|\sand/g).map(author => author.trim()))) ||
-            valIncludesStr(str, titles[i].innerHTML)) {
-            articles[i].style.display = "block";
-        } else {
-            articles[i].style.display = "none";
+
+/**
+ * Filtering articles based on value in search bar
+ */
+function search() {
+    if (document.getElementById("search_bar").checkValidity()) {
+        var str = document.getElementById("search_bar").value.toLowerCase();
+        var abstracts = document.getElementsByClassName("abstracts");
+        var articles = document.getElementsByClassName("articles");
+        var authors = document.getElementsByClassName("authors");
+        var titles = document.getElementsByClassName("title");
+        var filteredOpts = getChosenFilters();
+        var regex = /[^a-zA-Z0-9\s+]*/g;
+
+        if (filteredOpts.length != 0) {
+            var visItems = getFilteredArticles(articles.length,
+                getChosenFilters());
+
+            for (var i = 0; i < articles.length; i++) {
+                if (visItems.includes(i) &&
+                    (authorMatch(str, (authors[i].innerHTML.toLowerCase().
+                        substring(3)
+                        .split(/,|\sand/g).map(author => author.trim()))) ||
+                        strMatch(str, titles[i].innerHTML.toLowerCase()) ||
+                        strMatch(str, abstracts[i].innerHTML.toLowerCase().
+                            replace(regex, "")))) {
+                    articles[i].style.display = "block";
+                } else {
+                    articles[i].style.display = "none";
+                }
+            }
         }
+    } else {
+        document.getElementById("search_bar").reportValidity();
     }
 }
 
 
-/********************* PAGE LOAD ********************/
-// Formatting date as a Date object
+/**
+ * Formatting Date as a string
+ * @param {date} date - date object  
+ * @returns {string} date formatted as string 
+ */
 function getFormattedDate(date) {
     var dd = date.getDate();
     var mm = date.getMonth() + 1; //January is 0
@@ -367,10 +440,11 @@ function getFormattedDate(date) {
 }
 
 
-// Setup when page is loaded
+/**
+ * Setup when page is loaded
+ */
 window.onload = function () {
     var today = getFormattedDate(new Date());
-
 
     // Fetch data when first opened or when an hour has passed by
     if (sessionStorage.getItem("key") == null ||
@@ -388,8 +462,10 @@ window.onload = function () {
 
         fetchData();
 
+        // Track date/time when session last fetch data
         sessionStorage.setItem("time", new Date().getTime());
 
+        // Wait to data to load before setting items 
         setTimeout(() => {
             sessionStorage.setItem("startDate",
                 document.getElementById("startdate").min);
