@@ -16,7 +16,7 @@ This website displays the New York Times' top stories in the World, U.S., Health
 * HTML5
 * Javascript 1.7
 * CSS
-filterarticlesvid.mp4
+
 ### How to Run
 #### Locally:
 Go to terminal and paste: git clone https://github.com/nrudeys/Top-News.git and open index.html or about.html with a browser
