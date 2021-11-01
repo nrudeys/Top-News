@@ -27,4 +27,7 @@ Live Site: https://nrudeys.github.io/Top-News/
 ## Usage
 ![nav](https://user-images.githubusercontent.com/84989936/139741870-2329b860-54a8-4951-a1aa-b58279d4671d.gif)
 
+![filter](https://user-images.githubusercontent.com/84989936/139742913-c6b74b92-82a3-4614-abee-63a87dfa3ccf.gif)
+
+
 ## Acknowledgements
