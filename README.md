@@ -25,6 +25,6 @@ Go to terminal and paste: git clone https://github.com/nrudeys/Top-News.git and 
 Live Site: https://nrudeys.github.io/Top-News/
 
 ## Usage
-
+![nav](https://user-images.githubusercontent.com/84989936/139741870-2329b860-54a8-4951-a1aa-b58279d4671d.gif)
 
 ## Acknowledgements
