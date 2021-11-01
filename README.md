@@ -25,7 +25,7 @@ Go to terminal and paste: git clone https://github.com/nrudeys/Top-News.git and 
 Live Site: https://nrudeys.github.io/Top-News/
 
 ## Usage
-![Alt text](filter.gif/to/img.jpg?raw=true "Title")
+![Alt text](filter.gif "Title")
 
 
 ## Acknowledgements
