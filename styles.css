@@ -6,7 +6,7 @@ body {background-color: mediumaquamarine;}
 
 
 h1 {
-  font-size: 2vw;
+  font-size: 4vh;
   margin: 0;
   margin-top: 1.5%;
 }
@@ -15,7 +15,7 @@ h1 {
 /* Globe icon next to header */
 h1 > img {
   float: left;
-  height: 2.4vw;
+  height: 5vh;
   padding-right: 0.5vw;
 }
 
@@ -34,8 +34,10 @@ h1 > img {
 
 /* Container for articles */
 #articles_cont {
+  display: inline-block;
   margin-top: 0.65vw;
   padding: 1.6vw;
+  position: relative;
 }
 
 
@@ -61,7 +63,7 @@ h1 > img {
 #descrdiv {
   display: inline-block;
   font-size: larger;
-  height: 25vw;
+  height: 54vh;
   line-height: 2;
   margin-left: 4vw; 
   overflow: auto;
@@ -70,18 +72,26 @@ h1 > img {
 }
 
 
+#divider {
+  background-color: black;
+  border: none;
+  height: 0.065vh;
+}
+
+
 /* Container for filters */
 #filter_bar_cont {
   background-color: lightgrey;
   border: solid 0.065vw black;
   border-radius: 1.6vw;
-  display: block;
-  height: 13vw;
+  display: inline-block;
+  height: 30vh;
   margin-left: 4.23vw;
   margin-right: 4.23vw;
   overflow: auto;
   overflow-x: hidden;
   position: relative;
+  width: 90.5%;
 }
 
 
@@ -93,11 +103,19 @@ h1 > img {
 }
 
 
+#footer {
+  border: solid black;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+
 /* Container for header and header icon */
 #header_div {
   border: solid black;
   float: left; 
-  height: 40%;
+  height: 6.2vh;
   margin-left: 4.5%;
   margin-top: 1.5%;
   padding-left: 0.5%;
@@ -129,21 +147,27 @@ h1 > img {
 /* Hovering over info icon displays filter bar tip text */
 #info:hover + #tooltiptext {
   margin-bottom: 1%;
+  right: 5%;
+  text-align: right;
   visibility: visible;
+  width: 12vw; 
 }
 
 
 /* Navigation menu for page links */
 #nav_menu {
+  column-gap: 3vw;
+  display: inline-flex;
   float: right;
+  height: 3vh;
   margin-top: 2.5vw;
+  margin-right: 5vw;
 }
 
 
 #nav_menu a { 
   color: rgb(59, 59, 59);
-  font-size: large;
-  margin-right: 5vw;
+  font-size: 1.5vw;
   text-decoration: none;
 }
 
@@ -154,12 +178,15 @@ h1 > img {
 /* Image for about description */
 #nytimg {
   float: right;
-  width: 100%;
+  height: 24vw;
+  width: 35vw;
 }
 
 
 #nytimgdiv { 
   float: right;
+  height: 55vh;
+  overflow: auto;
   padding: 1.5vw;
   width: 50%;
 }
@@ -186,7 +213,7 @@ h1 > img {
   border: solid 0.06vw black;
   border-left: none;
   float: left;
-  height: 1.3vw;
+  height: 3vh;
   margin-top: 1.95vw;
   padding: 0.5vw;
   width: 35vw;
@@ -208,9 +235,9 @@ h1 > img {
   background-color: white;
   border: solid 0.06vw black;
   border-right: none;
-  font-size: 1.5vw;
+  font-size: 2.5vh;
   float: left;
-  height: 1.3vw;
+  height: 3vh;
   margin-left: 3vw;
   margin-top: 1.95vw;
   padding: 0.5vw;
@@ -244,8 +271,11 @@ h1 > img {
   border-radius: 0.65vw;
   color: white;
   display: inline-block;
+  padding: 0.5vw;
   position: absolute;
+  overflow: hidden;
   visibility: hidden;
+  word-wrap: break-word;
 }
 
 
@@ -279,6 +309,7 @@ h1 > img {
 /* Scrollbar for article conts and filter bar */
 #descrdiv::-webkit-scrollbar,
 #filter_bar_cont::-webkit-scrollbar,
+#nytimgdiv::-webkit-scrollbar,
 .articles::-webkit-scrollbar {
   height: 0.65vw;
   width: 0.65vw;
@@ -287,6 +318,7 @@ h1 > img {
 
 #descrdiv::-webkit-scrollbar-thumb,
 #filter_bar_cont::-webkit-scrollbar-thumb,
+#nytimgdiv::-webkit-scrollbar-thumb,
 .articles::-webkit-scrollbar-thumb {border-radius: 1.6vw;}
 
 
@@ -298,6 +330,7 @@ h1 > img {
 
 #descrdiv::-webkit-scrollbar-track-piece,
 #filter_bar_cont::-webkit-scrollbar-track-piece,
+#nytimgdiv::-webkit-scrollbar-track-piece,
 .articles::-webkit-scrollbar-track-piece {
   border-radius: 1.6vw;
   margin-bottom: 3.25vw;
