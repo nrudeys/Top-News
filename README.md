@@ -22,7 +22,7 @@ This website displays the New York Times' top stories in the World, U.S., Health
 Go to terminal and paste: git clone https://github.com/nrudeys/Top-News.git and open index.html or about.html with a browser
 
 #### Link:
-Live Site: https://nrudeys.github.io/Top-News/
+Live demo: https://nrudeys.github.io/Top-News/
 
 ## Usage
 ### Navigation
@@ -40,4 +40,9 @@ Example:
 ![filter](https://user-images.githubusercontent.com/84989936/139742913-c6b74b92-82a3-4614-abee-63a87dfa3ccf.gif)
 
 ## Acknowledgements
+* [flaticon](https://www.flaticon.com/authors/turkkub)
+* [NLTK's list of english stopwords](https://gist.github.com/sebleier/554280)
+* [pixabay](https://pixabay.com/users/tacskooo-3660772/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1789976)
 * [regular expressions 101](https://regex101.com/)
+* [Screen-O-Matic](https://screencast-o-matic.com/)
+* [The New York Times Developer Network](https://developer.nytimes.com/)
