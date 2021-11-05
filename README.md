@@ -3,7 +3,7 @@
 ## Table of Contents
 1. [Description](#description)
 2. [Getting Started](#getting-started)
-    * [Technologies and Libraries](#technologies-and-libraries)
+    * [Technologies](#technologies)
     * [How to Run](#how-to-run)
 3. [Usage](#usage)
 4. [Acknowledgements](#acknowledgements)
